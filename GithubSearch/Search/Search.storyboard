@@ -19,8 +19,23 @@
                     <view key="view" contentMode="scaleToFill" id="5de-GY-Th5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FYf-fI-YpB">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FYf-fI-YpB" secondAttribute="trailing" id="0EC-2N-3q0"/>
+                            <constraint firstItem="FYf-fI-YpB" firstAttribute="top" secondItem="YBy-KS-7fq" secondAttribute="bottom" id="LgY-fv-oVX"/>
+                            <constraint firstItem="FYf-fI-YpB" firstAttribute="leading" secondItem="5de-GY-Th5" secondAttribute="leading" id="WwF-np-tuX"/>
+                            <constraint firstItem="9Yi-b3-K2O" firstAttribute="top" secondItem="FYf-fI-YpB" secondAttribute="bottom" id="m3v-FX-X4V"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="FYf-fI-YpB" id="c0a-8h-DKS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SOW-zB-4J9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

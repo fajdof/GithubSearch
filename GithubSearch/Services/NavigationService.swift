@@ -16,6 +16,7 @@ struct NavigationService {
 
 	mutating func initWithSearchScreen(window: UIWindow) {
         let viewController: SearchViewController = controllerFactory(ViewModelType: SearchViewModel.self, PresenterType: SearchPresenter.self, storyboard: searchStoryboard)
+        viewController.viewModel.networkService = networkService
         
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController

@@ -26,6 +26,9 @@
 		756FA9031F07C05600DF54E7 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FA9001F07C05600DF54E7 /* SearchViewModel.swift */; };
 		756FA9061F07C12000DF54E7 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FA9051F07C12000DF54E7 /* UITableView+Dequeue.swift */; };
 		756FA9081F07C1A500DF54E7 /* UIViewController+Instatiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FA9071F07C1A500DF54E7 /* UIViewController+Instatiate.swift */; };
+		756FA90B1F07C4D600DF54E7 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FA9091F07C4D600DF54E7 /* SearchResultCell.swift */; };
+		756FA90C1F07C4D600DF54E7 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 756FA90A1F07C4D600DF54E7 /* SearchResultCell.xib */; };
+		756FA90E1F07D23600DF54E7 /* GithubRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FA90D1F07D23600DF54E7 /* GithubRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		756FA9001F07C05600DF54E7 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		756FA9051F07C12000DF54E7 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		756FA9071F07C1A500DF54E7 /* UIViewController+Instatiate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Instatiate.swift"; sourceTree = "<group>"; };
+		756FA9091F07C4D600DF54E7 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		756FA90A1F07C4D600DF54E7 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		756FA90D1F07D23600DF54E7 /* GithubRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubRouter.swift; sourceTree = "<group>"; };
 		BAD6D3BC102673554519FA90 /* Pods-GithubSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubSearch/Pods-GithubSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +108,8 @@
 				756FA8D71F07B3E900DF54E7 /* BaseClasses */,
 				756FA8CC1F07B1EE00DF54E7 /* Assets.xcassets */,
 				756FA8EC1F07BD3F00DF54E7 /* Search */,
-				756FA8CE1F07B1EE00DF54E7 /* LaunchScreen.storyboard */,
 				756FA8D11F07B1EE00DF54E7 /* Info.plist */,
+				756FA8CE1F07B1EE00DF54E7 /* LaunchScreen.storyboard */,
 			);
 			path = GithubSearch;
 			sourceTree = "<group>";
@@ -133,16 +139,18 @@
 				756FA9001F07C05600DF54E7 /* SearchViewModel.swift */,
 				756FA8FF1F07C05600DF54E7 /* SearchViewController.swift */,
 				756FA8FE1F07C05600DF54E7 /* SearchPresenter.swift */,
-				756FA8E81F07BC8800DF54E7 /* Views */,
+				756FA8E81F07BC8800DF54E7 /* Cells */,
 			);
 			path = SearchScreen;
 			sourceTree = "<group>";
 		};
-		756FA8E81F07BC8800DF54E7 /* Views */ = {
+		756FA8E81F07BC8800DF54E7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				756FA90A1F07C4D600DF54E7 /* SearchResultCell.xib */,
+				756FA9091F07C4D600DF54E7 /* SearchResultCell.swift */,
 			);
-			path = Views;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		756FA8EB1F07BD1D00DF54E7 /* SearchDetailScreen */ = {
@@ -151,7 +159,7 @@
 				756FA8FA1F07C04E00DF54E7 /* SearchDetailViewModel.swift */,
 				756FA8F91F07C04E00DF54E7 /* SearchDetailViewController.swift */,
 				756FA8F81F07C04E00DF54E7 /* SearchDetailPresenter.swift */,
-				756FA8ED1F07BD8400DF54E7 /* Views */,
+				756FA8ED1F07BD8400DF54E7 /* Cells */,
 			);
 			path = SearchDetailScreen;
 			sourceTree = "<group>";
@@ -159,24 +167,25 @@
 		756FA8EC1F07BD3F00DF54E7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				756FA8EE1F07BE0D00DF54E7 /* Search.storyboard */,
 				756FA8E71F07BC4400DF54E7 /* SearchScreen */,
 				756FA8EB1F07BD1D00DF54E7 /* SearchDetailScreen */,
-				756FA8EE1F07BE0D00DF54E7 /* Search.storyboard */,
 			);
 			path = Search;
 			sourceTree = "<group>";
 		};
-		756FA8ED1F07BD8400DF54E7 /* Views */ = {
+		756FA8ED1F07BD8400DF54E7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Views;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		756FA8F41F07BEE200DF54E7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				756FA8F01F07BE4700DF54E7 /* NetworkService.swift */,
+				756FA90D1F07D23600DF54E7 /* GithubRouter.swift */,
 				756FA8F51F07BF6100DF54E7 /* NetworkModels */,
 			);
 			path = Networking;
@@ -187,7 +196,7 @@
 			children = (
 				756FA8F61F07BFD400DF54E7 /* RequestError.swift */,
 			);
-			name = NetworkModels;
+			path = NetworkModels;
 			sourceTree = "<group>";
 		};
 		756FA9041F07C0E900DF54E7 /* Extensions */ = {
@@ -272,6 +281,7 @@
 			files = (
 				756FA8D01F07B1EE00DF54E7 /* LaunchScreen.storyboard in Resources */,
 				756FA8EF1F07BE0D00DF54E7 /* Search.storyboard in Resources */,
+				756FA90C1F07C4D600DF54E7 /* SearchResultCell.xib in Resources */,
 				756FA8CD1F07B1EE00DF54E7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,10 +347,12 @@
 				756FA8F31F07BE4700DF54E7 /* NavigationService.swift in Sources */,
 				756FA8DC1F07B43600DF54E7 /* BaseViewController.swift in Sources */,
 				756FA9031F07C05600DF54E7 /* SearchViewModel.swift in Sources */,
+				756FA90B1F07C4D600DF54E7 /* SearchResultCell.swift in Sources */,
 				756FA8DB1F07B43600DF54E7 /* BasePresenter.swift in Sources */,
 				756FA9021F07C05600DF54E7 /* SearchViewController.swift in Sources */,
 				756FA8C61F07B1EE00DF54E7 /* AppDelegate.swift in Sources */,
 				756FA9061F07C12000DF54E7 /* UITableView+Dequeue.swift in Sources */,
+				756FA90E1F07D23600DF54E7 /* GithubRouter.swift in Sources */,
 				756FA9081F07C1A500DF54E7 /* UIViewController+Instatiate.swift in Sources */,
 				756FA8F21F07BE4700DF54E7 /* NetworkService.swift in Sources */,
 				756FA8FD1F07C04E00DF54E7 /* SearchDetailViewModel.swift in Sources */,

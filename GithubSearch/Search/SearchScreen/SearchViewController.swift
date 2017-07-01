@@ -18,6 +18,8 @@ class SearchViewController: BaseViewController {
 	var presenter: SearchPresenter! {
 		return basePresenter as! SearchPresenter
 	}
+    
+    @IBOutlet weak var tableView: UITableView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
