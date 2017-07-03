@@ -17,6 +17,10 @@ class RequestError: Mappable, Error {
         
     }
     
+    init(message: String) {
+        self.message = message
+    }
+    
     func mapping(map: Map) {
         message <- map["message"]
     }

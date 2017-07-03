@@ -24,4 +24,14 @@ struct NetworkService {
 	func request(router : AlamofireRouter) -> Observable<(HTTPURLResponse, Any)> {
 		return RxAlamofire.requestJSON(router.method, router.url, parameters: router.params, encoding: router.encoding, headers: router.headers).observeOn(MainScheduler.instance)
 	}
+    
+    func getSearchResults(withQuery query: String, sortedBy scope: String) -> Observable<(HTTPURLResponse, Any)> {
+        
+        let params: [String: Any]? = [
+            "q": query,
+            "sort": scope
+        ]
+        
+        return request(router: GithubRouter.Get(path: "/search/repositories", params: params as [String : AnyObject]?)).debug()
+    }
 }
