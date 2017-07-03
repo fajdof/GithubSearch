@@ -58,6 +58,8 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
     }
 
     func getSearchResults(withQuery query: String, sortedBy scope: String) {
+        searchResultsVariable.value = []
+        
         networkService.getSearchResults(withQuery: query, sortedBy: scope).map { [weak self] (response, data) -> Result<SearchResult> in
             guard let `self` = self else { return .failure(RequestError(message: "Error")) }
             
@@ -76,34 +78,6 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
         }, onError: { [weak self] (error) in
             self?.errorVariable.value = error
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
-    }
-    
-    func sortDatasource(scope: SearchScope) {
-        guard let repositories = searchResultsVariable.value.first?.items else {
-            return
-        }
-        
-        searchResultsVariable.value = []
-        
-        var sortedRepositories: [Repository] = repositories
-        
-        switch scope {
-        case .Forks:
-            sortedRepositories = repositories.sorted(by: { (firstRepos, secondRepos) -> Bool in
-                return firstRepos.forksCount > secondRepos.forksCount
-            })
-        case .Stars:
-            sortedRepositories = repositories.sorted(by: { (firstRepos, secondRepos) -> Bool in
-                return firstRepos.starsCount > secondRepos.starsCount
-            })
-        case .Updated:
-            sortedRepositories = repositories.sorted(by: { (firstRepos, secondRepos) -> Bool in
-                guard let firstUpdatedAt = firstRepos.updatedAt, let secondUpdatedAt = secondRepos.updatedAt else { return true }
-                return firstUpdatedAt.timeIntervalSince1970 > secondUpdatedAt.timeIntervalSince1970
-            })
-        }
-        
-        searchResultsVariable.value = [SearchSectionModel(searchResults: sortedRepositories, id: searchResultsId)]
     }
 
 }

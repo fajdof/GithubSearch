@@ -44,6 +44,7 @@ class SearchViewController: BaseViewController {
     
     let bag = DisposeBag()
     var searchScope = SearchScope.Stars
+    var lastSearchTerm: String?
     var dataSource: RxTableViewSectionedAnimatedDataSource<SearchSectionModel>!
 
 	override func viewDidLoad() {
@@ -60,7 +61,9 @@ class SearchViewController: BaseViewController {
         searchBar.rx.selectedScopeButtonIndex.asDriver().drive(onNext: { [weak self] (index) in
             guard let searchScope = SearchScope(rawValue: index) else { return }
             self?.searchScope = searchScope
-            self?.viewModel.sortDatasource(scope: searchScope)
+            
+            guard let searchText = self?.lastSearchTerm, !searchText.isEmpty else { return }
+            self?.searchGithub(withText: searchText)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
         searchBar.rx.cancelButtonClicked.asDriver().drive(onNext: { [weak self] in
@@ -70,6 +73,7 @@ class SearchViewController: BaseViewController {
         searchBar.rx.searchButtonClicked.asDriver().drive(onNext: { [weak self] in
             guard let searchText = self?.searchBar.text else { return }
             self?.searchBar.resignFirstResponder()
+            self?.lastSearchTerm = searchText
             self?.searchGithub(withText: searchText)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
@@ -82,9 +86,11 @@ class SearchViewController: BaseViewController {
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
         viewModel.searchResultsVariable.asObservable().subscribe(onNext: { (sectionModels) in
-            SVProgressHUD.dismiss()
-            if sectionModels.first?.items.count == 0 {
-                SVProgressHUD.showError(withStatus: "No results")
+            if let firstModel = sectionModels.first {
+                SVProgressHUD.dismiss()
+                if firstModel.items.count == 0 {
+                    SVProgressHUD.showError(withStatus: "No results")
+                }
             }
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
