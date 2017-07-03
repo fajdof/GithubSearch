@@ -25,15 +25,6 @@ class Repository: Mappable {
     var defaultBranch: String?
     var repositoryUrl: String?
     
-    var updatedAtDescription: String? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d.M.yyyy.', 'HH:mm:ss"
-        if let date = updatedAt {
-            return formatter.string(from: date)
-        }
-        return nil
-    }
-    
     required init?(map: Map) {
         
     }

@@ -47,9 +47,18 @@ class SearchPresenter: BasePresenter {
         
         cell.nameLabel.text = SearchStatic.name + (repository.name ?? "--")
         cell.ownerNameLabel.text = SearchStatic.ownerName + (repository.owner?.name ?? "--")
-        cell.updatedAtLabel.text = SearchStatic.updated + (repository.updatedAtDescription ?? "--")
+        cell.updatedAtLabel.text = SearchStatic.updated + (getFormattedDateString(date: repository.updatedAt) ?? "--")
         if let url = repository.owner?.avatarUrl {
             cell.avatarImageView.kf.setImage(with: URL(string: url))
         }
+    }
+    
+    func getFormattedDateString(date: Date?) -> String? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d.M.yyyy.', 'HH:mm:ss"
+        if let `date` = date {
+            return formatter.string(from: date)
+        }
+        return nil
     }
 }
