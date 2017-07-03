@@ -83,6 +83,8 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
             return
         }
         
+        searchResultsVariable.value = []
+        
         var sortedRepositories: [Repository] = repositories
         
         switch scope {
