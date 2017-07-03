@@ -58,7 +58,7 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
     }
 
     func getSearchResults(withQuery query: String, sortedBy scope: String) {
-        searchResultsVariable.value = []
+        emptyVariable()
         
         networkService.getSearchResults(withQuery: query, sortedBy: scope).map { [weak self] (response, data) -> Result<SearchResult> in
             guard let `self` = self else { return .failure(RequestError(message: "Error")) }
@@ -78,6 +78,10 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
         }, onError: { [weak self] (error) in
             self?.errorVariable.value = error
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
+    }
+    
+    func emptyVariable() {
+        searchResultsVariable.value = []
     }
 
 }

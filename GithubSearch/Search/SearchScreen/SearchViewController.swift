@@ -58,6 +58,14 @@ class SearchViewController: BaseViewController {
 	}
     
     func setupRx() {
+        searchBar.rx.text.asDriver().drive(onNext: { [weak self] (text) in
+            guard let searchText = text else { return }
+            if searchText.isEmpty {
+                self?.viewModel.emptyVariable()
+                self?.lastSearchTerm = nil
+            }
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
+        
         searchBar.rx.selectedScopeButtonIndex.asDriver().drive(onNext: { [weak self] (index) in
             guard let searchScope = SearchScope(rawValue: index) else { return }
             self?.searchScope = searchScope
@@ -85,17 +93,19 @@ class SearchViewController: BaseViewController {
             self.viewModel.pushToSearchDetailScreen(navigationController: self.navigationController, repository: repository)
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
-        viewModel.searchResultsVariable.asObservable().subscribe(onNext: { (sectionModels) in
+        viewModel.searchResultsVariable.asObservable().subscribe(onNext: { [weak self] (sectionModels) in
             if let firstModel = sectionModels.first {
                 SVProgressHUD.dismiss()
                 if firstModel.items.count == 0 {
                     SVProgressHUD.showError(withStatus: "No results")
+                    self?.lastSearchTerm = nil
                 }
             }
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
         viewModel.errorVariable.asObservable().subscribe(onNext: { [weak self] (error) in
             self?.showErrorMessage(error: error)
+            self?.lastSearchTerm = nil
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
     }
     
