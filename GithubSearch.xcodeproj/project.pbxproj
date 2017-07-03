@@ -31,6 +31,9 @@
 		756FA90C1F07C4D600DF54E7 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 756FA90A1F07C4D600DF54E7 /* SearchResultCell.xib */; };
 		756FA90E1F07D23600DF54E7 /* GithubRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FA90D1F07D23600DF54E7 /* GithubRouter.swift */; };
 		75F99AD11F0AAB1E006AB488 /* NetworkRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD01F0AAB1E006AB488 /* NetworkRequestHandler.swift */; };
+		75F99AD31F0AB733006AB488 /* UIVIewController+ErrorShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD21F0AB733006AB488 /* UIVIewController+ErrorShowing.swift */; };
+		75F99AD51F0AB97F006AB488 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD41F0AB97F006AB488 /* Repository.swift */; };
+		75F99AD71F0AC065006AB488 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD61F0AC065006AB488 /* Owner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		756FA90A1F07C4D600DF54E7 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		756FA90D1F07D23600DF54E7 /* GithubRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubRouter.swift; sourceTree = "<group>"; };
 		75F99AD01F0AAB1E006AB488 /* NetworkRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestHandler.swift; sourceTree = "<group>"; };
+		75F99AD21F0AB733006AB488 /* UIVIewController+ErrorShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIewController+ErrorShowing.swift"; sourceTree = "<group>"; };
+		75F99AD41F0AB97F006AB488 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		75F99AD61F0AC065006AB488 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		BAD6D3BC102673554519FA90 /* Pods-GithubSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubSearch/Pods-GithubSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +207,8 @@
 			children = (
 				756FA8F61F07BFD400DF54E7 /* RequestError.swift */,
 				750670CD1F07DCE100D329E2 /* SearchResult.swift */,
+				75F99AD41F0AB97F006AB488 /* Repository.swift */,
+				75F99AD61F0AC065006AB488 /* Owner.swift */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 			children = (
 				756FA9051F07C12000DF54E7 /* UITableView+Dequeue.swift */,
 				756FA9071F07C1A500DF54E7 /* UIViewController+Instatiate.swift */,
+				75F99AD21F0AB733006AB488 /* UIVIewController+ErrorShowing.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -350,6 +359,7 @@
 				756FA9011F07C05600DF54E7 /* SearchPresenter.swift in Sources */,
 				756FA8F71F07BFD400DF54E7 /* RequestError.swift in Sources */,
 				756FA8DD1F07B43600DF54E7 /* BaseViewModel.swift in Sources */,
+				75F99AD31F0AB733006AB488 /* UIVIewController+ErrorShowing.swift in Sources */,
 				756FA8F31F07BE4700DF54E7 /* NavigationService.swift in Sources */,
 				756FA8DC1F07B43600DF54E7 /* BaseViewController.swift in Sources */,
 				756FA9031F07C05600DF54E7 /* SearchViewModel.swift in Sources */,
@@ -360,10 +370,12 @@
 				750670CE1F07DCE100D329E2 /* SearchResult.swift in Sources */,
 				756FA9061F07C12000DF54E7 /* UITableView+Dequeue.swift in Sources */,
 				756FA90E1F07D23600DF54E7 /* GithubRouter.swift in Sources */,
+				75F99AD51F0AB97F006AB488 /* Repository.swift in Sources */,
 				75F99AD11F0AAB1E006AB488 /* NetworkRequestHandler.swift in Sources */,
 				756FA9081F07C1A500DF54E7 /* UIViewController+Instatiate.swift in Sources */,
 				756FA8F21F07BE4700DF54E7 /* NetworkService.swift in Sources */,
 				756FA8FD1F07C04E00DF54E7 /* SearchDetailViewModel.swift in Sources */,
+				75F99AD71F0AC065006AB488 /* Owner.swift in Sources */,
 				756FA8FC1F07C04E00DF54E7 /* SearchDetailViewController.swift in Sources */,
 				756FA8FB1F07C04E00DF54E7 /* SearchDetailPresenter.swift in Sources */,
 			);

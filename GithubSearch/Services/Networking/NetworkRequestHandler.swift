@@ -20,9 +20,13 @@ protocol NetworkRequestHandler {
     
     func extractedError(data: Any) -> RequestError
     
-    func parseJSONAsTopLevelArray<T: Mappable>(data: Any) -> Result<[T]>
+    func parseJSONArray<T: Mappable>(data: Any) -> Result<[T]>
     
-    func parseJSON<T: Mappable>(data: Any, response: HTTPURLResponse) -> Result<[T]>
+    func parseJSONAsTopLevelArray<T: Mappable>(data: Any, response: HTTPURLResponse) -> Result<[T]>
+    
+    func parseJSONDictionary<T: Mappable>(data: Any) -> Result<T>
+    
+    func parseJSONAsTopLevelDictionary<T: Mappable>(data: Any, response: HTTPURLResponse) -> Result<T>
 }
 
 extension NetworkRequestHandler {
@@ -51,20 +55,36 @@ extension NetworkRequestHandler {
         return RequestError(JSON: ["message":"Network Error"])!
     }
     
-    func parseJSONAsTopLevelArray<T: Mappable>(data: Any) -> Result<[T]> {
+    func parseJSONArray<T: Mappable>(data: Any) -> Result<[T]> {
         if let arrayData = data as? [[String: Any]] {
-            let searchResultData = Mapper<T>().mapArray(JSONArray: arrayData)
-            return .success(searchResultData)
+            let mappedData = Mapper<T>().mapArray(JSONArray: arrayData)
+            return .success(mappedData)
         } else {
             return .failure(defaultNetworkError)
         }
     }
     
-    func parseJSON<T: Mappable>(data: Any, response: HTTPURLResponse) -> Result<[T]> {
+    func parseJSONAsTopLevelArray<T: Mappable>(data: Any, response: HTTPURLResponse) -> Result<[T]> {
         if successfulStatusCodes.contains(response.statusCode) {
-            return .failure(extractedError(data: data))
+            return parseJSONArray(data: data)
         } else {
-            return parseJSONAsTopLevelArray(data: data)
+            return .failure(extractedError(data: data))
+        }
+    }
+    
+    func parseJSONDictionary<T: Mappable>(data: Any) -> Result<T> {
+        if let dictionaryData = data as? [String: AnyObject], let mappedData = T(JSON: dictionaryData) {
+            return .success(mappedData)
+        } else {
+            return .failure(defaultNetworkError)
+        }
+    }
+    
+    func parseJSONAsTopLevelDictionary<T: Mappable>(data: Any, response: HTTPURLResponse) -> Result<T> {
+        if successfulStatusCodes.contains(response.statusCode) {
+            return parseJSONDictionary(data: data)
+        } else {
+            return .failure(extractedError(data: data))
         }
     }
     

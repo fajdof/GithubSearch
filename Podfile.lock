@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
+  - Kingfisher (3.10.2)
   - ObjectMapper (2.2.7)
   - RxAlamofire (3.0.3):
     - RxAlamofire/Core (= 3.0.3)
@@ -15,6 +16,7 @@ PODS:
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
+  - Kingfisher
   - ObjectMapper
   - RxAlamofire
   - RxCocoa
@@ -24,6 +26,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   RxAlamofire: 5eb39188c4917ad98127c0ecb4878a61b7517003
   RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
@@ -31,6 +34,6 @@ SPEC CHECKSUMS:
   RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: f51723c811818e1796f8915b2ed919e6801e9e70
+PODFILE CHECKSUM: b4780ae4ea1a5608008d801d0649cebab3b1eaf2
 
 COCOAPODS: 1.2.0

@@ -45,9 +45,14 @@ class SearchViewController: BaseViewController {
     let bag = DisposeBag()
     var searchScope = SearchScope.Stars
     var dataSource: RxTableViewSectionedAnimatedDataSource<SearchSectionModel>!
+    var tapGestureRecognizer: UITapGestureRecognizer!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        presenter.setup()
+        
+        addTapRecognizer()
         
         bindDataSource()
         
@@ -66,6 +71,7 @@ class SearchViewController: BaseViewController {
         
         searchBar.rx.searchButtonClicked.asDriver().drive(onNext: { [weak self] in
             guard let searchText = self?.searchBar.text else { return }
+            self?.searchBar.resignFirstResponder()
             self?.searchGithub(withText: searchText)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
@@ -77,20 +83,22 @@ class SearchViewController: BaseViewController {
             
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
-        viewModel.searchResultsVariable.asObservable().subscribe(onNext: { (_) in
+        viewModel.searchResultsVariable.asObservable().subscribe(onNext: { (sectionModels) in
             SVProgressHUD.dismiss()
+            if sectionModels.first?.items.count == 0 {
+                SVProgressHUD.showError(withStatus: "No results")
+            }
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
-        viewModel.errorVariable.asObservable().subscribe(onNext: { (err) in
-            if let error = err {
-                SVProgressHUD.showError(withStatus: error.localizedDescription)
-            }
+        viewModel.errorVariable.asObservable().subscribe(onNext: { [weak self] (error) in
+            self?.showErrorMessage(error: error)
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
     }
     
     func bindDataSource() {
         registerNibs()
         dataSource = RxTableViewSectionedAnimatedDataSource<SearchSectionModel>()
+        dataSource.animationConfiguration = AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade)
         
         configureDataSource()
         viewModel.searchResultsVariable.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).addDisposableTo(bag)
@@ -105,6 +113,7 @@ class SearchViewController: BaseViewController {
             guard let `self` = self else { return UITableViewCell() }
             
             let cell: SearchResultCell = tv.dequeueReusableCell()
+            self.presenter.configureSearchResultCell(cell: cell, repository: item)
             
             return cell
         }
@@ -115,6 +124,15 @@ class SearchViewController: BaseViewController {
         SVProgressHUD.show()
         
         viewModel.getSearchResults(withQuery: searchText, sortedBy: searchScope.parameterDescription)
+    }
+    
+    func addTapRecognizer() {
+        tapGestureRecognizer = UITapGestureRecognizer()
+        tableView.addGestureRecognizer(tapGestureRecognizer)
+        
+        tapGestureRecognizer.rx.event.asDriver().drive(onNext: { [weak self] (sender) in
+            self?.searchBar.resignFirstResponder()
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
     }
 
 }

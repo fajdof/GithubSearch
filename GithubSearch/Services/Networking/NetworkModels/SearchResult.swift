@@ -12,28 +12,14 @@ import RxDataSources
 
 class SearchResult: Mappable {
     
-    var id: Int = 0
-    var name: String?
+    var repositories: [Repository] = []
     
     required init?(map: Map) {
         
     }
     
     func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
+        repositories <- map["items"]
     }
     
-}
-
-extension SearchResult: IdentifiableType, Equatable {
-    typealias Identity = Int
-    
-    var identity: Int {
-        return id
-    }
-}
-
-func == (lhs: SearchResult, rhs: SearchResult) -> Bool {
-    return (lhs.id == rhs.id)
 }

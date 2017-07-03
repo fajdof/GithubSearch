@@ -10,9 +10,17 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
 
+    @IBOutlet weak var issuesCountLabel: UILabel!
+    @IBOutlet weak var watchersCountLabel: UILabel!
+    @IBOutlet weak var forksCountLabel: UILabel!
+    @IBOutlet weak var ownerNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var bottomPadding: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        bottomPadding.constant = 16
     }
 
 }

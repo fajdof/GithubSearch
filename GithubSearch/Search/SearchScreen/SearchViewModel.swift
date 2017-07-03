@@ -14,10 +14,10 @@ import ObjectMapper
 
 struct SearchSectionModel {
     
-    var searchResults: [SearchResult]
+    var searchResults: [Repository]
     var id: String
     
-    init(searchResults: [SearchResult], id: String) {
+    init(searchResults: [Repository], id: String) {
         self.searchResults = searchResults
         self.id = id
     }
@@ -25,14 +25,14 @@ struct SearchSectionModel {
 
 
 extension SearchSectionModel: AnimatableSectionModelType {
-    typealias Item = SearchResult
+    typealias Item = Repository
     typealias Identity = String
     
     var identity: String {
         return id
     }
     
-    var items: [SearchResult] {
+    var items: [Repository] {
         return searchResults
     }
     
@@ -54,17 +54,17 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
 	required init() {}
 
     func getSearchResults(withQuery query: String, sortedBy scope: String) {
-        networkService.getSearchResults(withQuery: query, sortedBy: scope).map { [weak self] (response, data) -> Result<[SearchResult]> in
+        networkService.getSearchResults(withQuery: query, sortedBy: scope).map { [weak self] (response, data) -> Result<SearchResult> in
             guard let `self` = self else { return .failure(RequestError(message: "Error")) }
             
-            return self.parseJSON(data: data, response: response)
+            return self.parseJSONAsTopLevelDictionary(data: data, response: response)
             
         }.subscribe(onNext: { [weak self] (result) in
             guard let `self` = self else { return }
             
             switch result {
             case .success(let data):
-                let searchResultsModel = SearchSectionModel(searchResults: data, id: self.searchResultsId)
+                let searchResultsModel = SearchSectionModel(searchResults: data.repositories, id: self.searchResultsId)
                 self.searchResultsVariable.value = [searchResultsModel]
             case .failure(let error):
                 self.errorVariable.value = error

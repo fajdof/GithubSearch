@@ -24,9 +24,9 @@
                             <constraint firstAttribute="height" constant="80" id="fgr-rR-aNh"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA9-cd-XbL">
-                        <rect key="frame" x="16" y="16" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA9-cd-XbL">
+                        <rect key="frame" x="16" y="16" width="383" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -60,7 +60,9 @@
                     <constraint firstItem="nA9-cd-XbL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5xp-9O-eLq"/>
                     <constraint firstItem="bLJ-6v-Vfo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="66k-mN-GSR"/>
                     <constraint firstItem="CNr-kQ-K6V" firstAttribute="top" secondItem="nwS-4N-rHB" secondAttribute="bottom" constant="8" id="Pqg-1r-X56"/>
+                    <constraint firstAttribute="trailing" secondItem="nA9-cd-XbL" secondAttribute="trailing" constant="16" id="QoT-je-Ny8"/>
                     <constraint firstItem="ZmL-24-SrR" firstAttribute="top" secondItem="bLJ-6v-Vfo" secondAttribute="top" id="VKc-b4-pyv"/>
+                    <constraint firstAttribute="bottom" secondItem="1Lw-07-DTt" secondAttribute="bottom" constant="101.5" id="bJf-8t-ZrC"/>
                     <constraint firstItem="bLJ-6v-Vfo" firstAttribute="top" secondItem="nA9-cd-XbL" secondAttribute="bottom" constant="8" id="dbf-PG-AK3"/>
                     <constraint firstItem="nA9-cd-XbL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="eeD-SR-lOR"/>
                     <constraint firstAttribute="trailing" secondItem="ZmL-24-SrR" secondAttribute="trailing" constant="16" id="hBB-k8-fEH"/>
@@ -70,6 +72,15 @@
                     <constraint firstAttribute="trailing" secondItem="CNr-kQ-K6V" secondAttribute="trailing" constant="16" id="y7q-lj-tYi"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="bLJ-6v-Vfo" id="48d-J6-uFw"/>
+                <outlet property="bottomPadding" destination="bJf-8t-ZrC" id="N0o-1a-sgo"/>
+                <outlet property="forksCountLabel" destination="ZmL-24-SrR" id="a9c-2l-VP3"/>
+                <outlet property="issuesCountLabel" destination="CNr-kQ-K6V" id="yyR-2u-YBS"/>
+                <outlet property="nameLabel" destination="nA9-cd-XbL" id="9L1-CA-onR"/>
+                <outlet property="ownerNameLabel" destination="1Lw-07-DTt" id="6Zx-II-pta"/>
+                <outlet property="watchersCountLabel" destination="nwS-4N-rHB" id="qpl-hA-mRS"/>
+            </connections>
             <point key="canvasLocation" x="17.5" y="63"/>
         </tableViewCell>
     </objects>

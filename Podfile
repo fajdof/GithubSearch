@@ -12,5 +12,6 @@ pod 'RxDataSources'
 pod 'RxAlamofire'
 pod 'SVProgressHUD'
 pod 'ObjectMapper'
+pod 'Kingfisher'
 
 end
