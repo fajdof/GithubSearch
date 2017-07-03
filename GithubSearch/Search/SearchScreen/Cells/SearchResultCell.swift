@@ -16,6 +16,8 @@ class SearchResultCell: UITableViewCell {
     @IBOutlet weak var ownerNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var updatedAtLabel: UILabel!
+    @IBOutlet weak var starsCountLabel: UILabel!
     @IBOutlet weak var bottomPadding: NSLayoutConstraint!
     
     override func awakeFromNib() {

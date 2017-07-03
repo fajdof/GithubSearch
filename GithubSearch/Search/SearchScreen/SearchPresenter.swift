@@ -20,6 +20,8 @@ class SearchPresenter: BasePresenter {
         static var watchers: String { get { return "Watchers: " } }
         static var forks: String { get { return "Forks: " } }
         static var issues: String { get { return "Issues: " } }
+        static var stars: String { get { return "Stars: " } }
+        static var updated: String { get { return "Last updated: " } }
 	}
 
 	weak var baseViewController: BaseViewController!
@@ -42,8 +44,11 @@ class SearchPresenter: BasePresenter {
         cell.forksCountLabel.text = SearchStatic.forks + repository.forksCount.description
         cell.watchersCountLabel.text = SearchStatic.watchers + repository.watchersCount.description
         cell.issuesCountLabel.text = SearchStatic.issues + repository.issuesCount.description
+        cell.starsCountLabel.text = SearchStatic.stars + repository.starsCount.description
+        
         cell.nameLabel.text = SearchStatic.name + (repository.name ?? "--")
         cell.ownerNameLabel.text = SearchStatic.ownerName + (repository.owner?.name ?? "--")
+        cell.updatedAtLabel.text = SearchStatic.updated + (repository.updatedAtDescription ?? "--")
         if let url = repository.owner?.avatarUrl {
             cell.avatarImageView.kf.setImage(with: URL(string: url))
         }

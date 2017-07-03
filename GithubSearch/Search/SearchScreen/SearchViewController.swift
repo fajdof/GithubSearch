@@ -63,6 +63,7 @@ class SearchViewController: BaseViewController {
         searchBar.rx.selectedScopeButtonIndex.asDriver().drive(onNext: { [weak self] (index) in
             guard let searchScope = SearchScope(rawValue: index) else { return }
             self?.searchScope = searchScope
+            self?.viewModel.sortDatasource(scope: searchScope)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
         searchBar.rx.cancelButtonClicked.asDriver().drive(onNext: { [weak self] in

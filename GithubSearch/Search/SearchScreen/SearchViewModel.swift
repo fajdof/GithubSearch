@@ -73,5 +73,31 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
             self?.errorVariable.value = error
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
     }
+    
+    func sortDatasource(scope: SearchScope) {
+        guard let repositories = searchResultsVariable.value.first?.items else {
+            return
+        }
+        
+        var sortedRepositories: [Repository] = repositories
+        
+        switch scope {
+        case .Forks:
+            sortedRepositories = repositories.sorted(by: { (firstRepos, secondRepos) -> Bool in
+                return firstRepos.forksCount > secondRepos.forksCount
+            })
+        case .Stars:
+            sortedRepositories = repositories.sorted(by: { (firstRepos, secondRepos) -> Bool in
+                return firstRepos.starsCount > secondRepos.starsCount
+            })
+        case .Updated:
+            sortedRepositories = repositories.sorted(by: { (firstRepos, secondRepos) -> Bool in
+                guard let firstUpdatedAt = firstRepos.updatedAt, let secondUpdatedAt = secondRepos.updatedAt else { return true }
+                return firstUpdatedAt.timeIntervalSince1970 > secondUpdatedAt.timeIntervalSince1970
+            })
+        }
+        
+        searchResultsVariable.value = [SearchSectionModel(searchResults: sortedRepositories, id: searchResultsId)]
+    }
 
 }
