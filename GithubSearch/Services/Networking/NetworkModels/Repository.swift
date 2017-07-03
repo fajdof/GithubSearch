@@ -20,6 +20,10 @@ class Repository: Mappable {
     var issuesCount: Int = 0
     var updatedAt: Date?
     var starsCount: Int = 0
+    var language: String?
+    var hasIssues: Bool = false
+    var defaultBranch: String?
+    var repositoryUrl: String?
     
     var updatedAtDescription: String? {
         let formatter = DateFormatter()
@@ -59,6 +63,10 @@ class Repository: Mappable {
         issuesCount <- map["open_issues_count"]
         updatedAt <- (map["pushed_at"], dateTransform)
         starsCount <- map["stargazers_count"]
+        language <- map["language"]
+        hasIssues <- map["has_issues"]
+        defaultBranch <- map["default_branch"]
+        repositoryUrl <- map["html_url"]
     }
     
 }

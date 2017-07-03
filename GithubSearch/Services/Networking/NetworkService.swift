@@ -34,4 +34,9 @@ struct NetworkService {
         
         return request(router: GithubRouter.Get(path: "/search/repositories", params: params as [String : AnyObject]?)).debug()
     }
+    
+    func getRepositoryDetails(withRepositoryId repositoryId: String) -> Observable<(HTTPURLResponse, Any)> {
+        
+        return request(router: GithubRouter.Get(path: "/repositories/\(repositoryId)", params: nil)).debug()
+    }
 }

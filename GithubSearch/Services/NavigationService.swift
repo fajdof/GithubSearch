@@ -14,13 +14,21 @@ struct NavigationService {
 	var networkService = NetworkService()
 	var searchStoryboard = UIStoryboard(name: "Search", bundle: nil)
 
-	mutating func initWithSearchScreen(window: UIWindow) {
+	func initWithSearchScreen(window: UIWindow) {
         let viewController: SearchViewController = controllerFactory(ViewModelType: SearchViewModel.self, PresenterType: SearchPresenter.self, storyboard: searchStoryboard)
-        viewController.viewModel.networkService = networkService
         
+        viewController.viewModel.networkService = networkService
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
 	}
+    
+    func pushToSearchDetailScreen(navigationController: UINavigationController?, repository: Repository) {
+        let viewController: SearchDetailViewController = controllerFactory(ViewModelType: SearchDetailViewModel.self, PresenterType: SearchDetailPresenter.self, storyboard: searchStoryboard)
+        
+        viewController.viewModel.networkService = networkService
+        viewController.repository = repository
+        navigationController?.pushViewController(viewController, animated: true)
+    }
     
     func controllerFactory<T: BaseViewController, V: BaseViewModel, P: BasePresenter>(ViewModelType: V.Type, PresenterType: P.Type, storyboard: UIStoryboard) -> T {
         

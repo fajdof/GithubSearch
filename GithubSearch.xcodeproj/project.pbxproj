@@ -34,6 +34,10 @@
 		75F99AD31F0AB733006AB488 /* UIVIewController+ErrorShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD21F0AB733006AB488 /* UIVIewController+ErrorShowing.swift */; };
 		75F99AD51F0AB97F006AB488 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD41F0AB97F006AB488 /* Repository.swift */; };
 		75F99AD71F0AC065006AB488 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD61F0AC065006AB488 /* Owner.swift */; };
+		75F99ADA1F0AF04D006AB488 /* OtherInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99AD81F0AF04D006AB488 /* OtherInfoCell.swift */; };
+		75F99ADB1F0AF04D006AB488 /* OtherInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F99AD91F0AF04D006AB488 /* OtherInfoCell.xib */; };
+		75F99ADE1F0AF332006AB488 /* OpenLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F99ADC1F0AF332006AB488 /* OpenLinkCell.swift */; };
+		75F99ADF1F0AF332006AB488 /* OpenLinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F99ADD1F0AF332006AB488 /* OpenLinkCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		75F99AD21F0AB733006AB488 /* UIVIewController+ErrorShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIewController+ErrorShowing.swift"; sourceTree = "<group>"; };
 		75F99AD41F0AB97F006AB488 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		75F99AD61F0AC065006AB488 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		75F99AD81F0AF04D006AB488 /* OtherInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherInfoCell.swift; sourceTree = "<group>"; };
+		75F99AD91F0AF04D006AB488 /* OtherInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherInfoCell.xib; sourceTree = "<group>"; };
+		75F99ADC1F0AF332006AB488 /* OpenLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenLinkCell.swift; sourceTree = "<group>"; };
+		75F99ADD1F0AF332006AB488 /* OpenLinkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenLinkCell.xib; sourceTree = "<group>"; };
 		BAD6D3BC102673554519FA90 /* Pods-GithubSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubSearch/Pods-GithubSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +195,10 @@
 		756FA8ED1F07BD8400DF54E7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				75F99AD91F0AF04D006AB488 /* OtherInfoCell.xib */,
+				75F99AD81F0AF04D006AB488 /* OtherInfoCell.swift */,
+				75F99ADD1F0AF332006AB488 /* OpenLinkCell.xib */,
+				75F99ADC1F0AF332006AB488 /* OpenLinkCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -295,6 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				756FA8D01F07B1EE00DF54E7 /* LaunchScreen.storyboard in Resources */,
+				75F99ADF1F0AF332006AB488 /* OpenLinkCell.xib in Resources */,
+				75F99ADB1F0AF04D006AB488 /* OtherInfoCell.xib in Resources */,
 				756FA8EF1F07BE0D00DF54E7 /* Search.storyboard in Resources */,
 				756FA90C1F07C4D600DF54E7 /* SearchResultCell.xib in Resources */,
 				756FA8CD1F07B1EE00DF54E7 /* Assets.xcassets in Resources */,
@@ -364,10 +378,12 @@
 				756FA8DC1F07B43600DF54E7 /* BaseViewController.swift in Sources */,
 				756FA9031F07C05600DF54E7 /* SearchViewModel.swift in Sources */,
 				756FA90B1F07C4D600DF54E7 /* SearchResultCell.swift in Sources */,
+				75F99ADA1F0AF04D006AB488 /* OtherInfoCell.swift in Sources */,
 				756FA8DB1F07B43600DF54E7 /* BasePresenter.swift in Sources */,
 				756FA9021F07C05600DF54E7 /* SearchViewController.swift in Sources */,
 				756FA8C61F07B1EE00DF54E7 /* AppDelegate.swift in Sources */,
 				750670CE1F07DCE100D329E2 /* SearchResult.swift in Sources */,
+				75F99ADE1F0AF332006AB488 /* OpenLinkCell.swift in Sources */,
 				756FA9061F07C12000DF54E7 /* UITableView+Dequeue.swift in Sources */,
 				756FA90E1F07D23600DF54E7 /* GithubRouter.swift in Sources */,
 				75F99AD51F0AB97F006AB488 /* Repository.swift in Sources */,

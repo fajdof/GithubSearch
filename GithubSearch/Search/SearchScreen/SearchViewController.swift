@@ -45,14 +45,11 @@ class SearchViewController: BaseViewController {
     let bag = DisposeBag()
     var searchScope = SearchScope.Stars
     var dataSource: RxTableViewSectionedAnimatedDataSource<SearchSectionModel>!
-    var tapGestureRecognizer: UITapGestureRecognizer!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
         presenter.setup()
-        
-        addTapRecognizer()
         
         bindDataSource()
         
@@ -80,8 +77,8 @@ class SearchViewController: BaseViewController {
             guard let `self` = self else { return }
             
             self.tableView.deselectRow(at: indexPath, animated: true)
-            let item = self.dataSource[indexPath]
-            
+            let repository = self.dataSource[indexPath]
+            self.viewModel.pushToSearchDetailScreen(navigationController: self.navigationController, repository: repository)
         }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
         
         viewModel.searchResultsVariable.asObservable().subscribe(onNext: { (sectionModels) in
@@ -125,15 +122,6 @@ class SearchViewController: BaseViewController {
         SVProgressHUD.show()
         
         viewModel.getSearchResults(withQuery: searchText, sortedBy: searchScope.parameterDescription)
-    }
-    
-    func addTapRecognizer() {
-        tapGestureRecognizer = UITapGestureRecognizer()
-        tableView.addGestureRecognizer(tapGestureRecognizer)
-        
-        tapGestureRecognizer.rx.event.asDriver().drive(onNext: { [weak self] (sender) in
-            self?.searchBar.resignFirstResponder()
-        }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
     }
 
 }

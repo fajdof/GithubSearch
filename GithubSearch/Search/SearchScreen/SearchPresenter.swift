@@ -37,7 +37,6 @@ class SearchPresenter: BasePresenter {
         viewController.tableView.rowHeight = UITableViewAutomaticDimension
         viewController.tableView.estimatedRowHeight = 150
         viewController.tableView.tableFooterView = UIView()
-        viewController.tableView.tableHeaderView = UIView()
     }
     
     func configureSearchResultCell(cell: SearchResultCell, repository: Repository) {

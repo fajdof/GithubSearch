@@ -52,6 +52,10 @@ class SearchViewModel: BaseViewModel, NetworkRequestHandler {
     let searchResultsId = "SearchResults"
 
 	required init() {}
+    
+    func pushToSearchDetailScreen(navigationController: UINavigationController?, repository: Repository) {
+        navigationService.pushToSearchDetailScreen(navigationController: navigationController, repository: repository)
+    }
 
     func getSearchResults(withQuery query: String, sortedBy scope: String) {
         networkService.getSearchResults(withQuery: query, sortedBy: scope).map { [weak self] (response, data) -> Result<SearchResult> in
