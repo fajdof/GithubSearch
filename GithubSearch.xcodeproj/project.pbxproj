@@ -517,7 +517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.degordian.GithubSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "56d8da37-eeaa-4f43-82f1-61a4626a07bd";
+				PROVISIONING_PROFILE = "d2f440e2-9543-4e28-8e34-209bfc6718d5";
 				PROVISIONING_PROFILE_SPECIFIER = "Degordian iOS General";
 				SWIFT_VERSION = 3.0;
 			};

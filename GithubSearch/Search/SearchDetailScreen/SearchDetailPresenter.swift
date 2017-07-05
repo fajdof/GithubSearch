@@ -16,8 +16,8 @@ class SearchDetailPresenter: BasePresenter {
 		static var title: String { get { return "Repository" } }
         static var branch: String { get { return "Default branch: " } }
         static var language: String { get { return "Language: " } }
-        static var issues: String { get { return "This repository has issues" } }
-        static var noIssues: String { get { return "This repository has no issues" } }
+        static var wiki: String { get { return "This repository has a Wiki" } }
+        static var noWiki: String { get { return "This repository has no Wiki" } }
         static var openLink: String { get { return "Open Link" } }
 	}
 
@@ -45,10 +45,10 @@ class SearchDetailPresenter: BasePresenter {
     func configureOtherInfoCell(cell: OtherInfoCell, repository: Repository) {
         cell.defaultBranchLabel.text = SearchDetailStatic.branch + (repository.defaultBranch ?? "--")
         cell.languageLabel.text = SearchDetailStatic.language + (repository.language ?? "--")
-        if repository.hasIssues {
-            cell.hasIssuesLabel.text = SearchDetailStatic.issues
+        if repository.hasWiki {
+            cell.hasIssuesLabel.text = SearchDetailStatic.wiki
         } else {
-            cell.hasIssuesLabel.text = SearchDetailStatic.noIssues
+            cell.hasIssuesLabel.text = SearchDetailStatic.noWiki
         }
         cell.selectionStyle = .none
     }
